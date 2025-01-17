@@ -2,7 +2,7 @@ package com.inditex.backendtest.domain.models;
 
 import java.util.Date;
 
-public class Prices {
+public class Price {
 
     private int brandId;
     private Date startDate;
@@ -25,7 +25,7 @@ public class Prices {
      * @param price      Precio del producto.
      * @param currency   Moneda del precio.
      */
-    public Prices(
+    public Price(
             int brandId,
             Date startDate,
             Date endDate,
