@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface PriceRepository extends MongoRepository<PriceEntity, String> {
 
-    @Query("{ 'brandId' : ?0, 'productId' : ?1, 'startDate' : { $lte: ?2 }, 'endDate' : { $gte: ?2 } }")
-    Optional<PriceEntity> findByBrandIdAndProductIdAndDateBetween(int brandId, int productId, Date date);
+    @Query("{'productId' : ?1}")
+    Optional<PriceEntity> findByProductId(int productId);
 }

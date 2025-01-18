@@ -25,9 +25,9 @@ public class PriceRepositoryPortImpl implements PriceRepositoryPort {
     }
 
     @Override
-    public Optional<Price> getPrice(int brandId, int productId, Date date) {
+    public Optional<Price> getPrices(int productId) {
 
-        Optional<PriceEntity> priceEntity = priceRepository.findByBrandIdAndProductIdAndDateBetween(brandId, productId, date);
+        Optional<PriceEntity> priceEntity = priceRepository.findByProductId(productId);
 
 
         return Optional.empty();

@@ -2,7 +2,7 @@ package com.inditex.backendtest.application.price;
 
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.in.CreatePrice;
-import com.inditex.backendtest.domain.ports.in.GetPrice;
+import com.inditex.backendtest.domain.ports.in.GetPrices;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
 import java.util.Date;
@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * Implementa la interfaz {@link CreatePrice} para obtener un precios.
  */
-public class GetPriceImpl implements GetPrice {
+public class GetPricesImpl implements GetPrices {
 
     private final PriceRepositoryPort priceRepositoryPort;
 
@@ -20,7 +20,7 @@ public class GetPriceImpl implements GetPrice {
      *
      * @param priceRepositoryPort Repositorio de precios para guardar precios.
      */
-    public GetPriceImpl(PriceRepositoryPort priceRepositoryPort) {
+    public GetPricesImpl(PriceRepositoryPort priceRepositoryPort) {
         this.priceRepositoryPort = priceRepositoryPort;
     }
 
@@ -28,7 +28,7 @@ public class GetPriceImpl implements GetPrice {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Price> getPrice(int brandId, int productId, Date date) {
-        return priceRepositoryPort.getPrice(brandId, productId, date);
+    public Optional<Price> getPrices(int productId) {
+        return priceRepositoryPort.getPrices(productId);
     }
 }
