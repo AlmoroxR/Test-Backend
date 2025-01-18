@@ -5,9 +5,12 @@ import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 import com.inditex.backendtest.infrastructure.entities.mongodb.PriceEntity;
 import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class PriceRepositoryPortImpl implements PriceRepositoryPort {
 
     private final PriceRepository priceRepository;
@@ -27,9 +30,10 @@ public class PriceRepositoryPortImpl implements PriceRepositoryPort {
     @Override
     public Optional<List<Price>> getPrices(int productId) {
 
-        Optional<PriceEntity> priceEntity = priceRepository.findByProductId(productId);
+        Optional<List<PriceEntity>> priceEntityList = priceRepository.findByProductId(productId);
 
-
-        return Optional.empty();
+        return priceEntityList.map(entities -> entities.stream()
+                .map(PriceMapper::mapToDomainPrice)
+                .toList());
     }
 }
