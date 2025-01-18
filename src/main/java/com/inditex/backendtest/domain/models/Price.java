@@ -157,7 +157,6 @@ public class Price {
         this.currency = currency;
     }
 
-
     @Override
     public String toString() {
         return "Price{" +
