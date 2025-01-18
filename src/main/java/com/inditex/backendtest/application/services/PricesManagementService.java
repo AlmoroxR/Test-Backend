@@ -4,7 +4,7 @@ import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.in.CreatePrice;
 import com.inditex.backendtest.domain.ports.in.GetPrices;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -39,7 +39,7 @@ public class PricesManagementService implements CreatePrice, GetPrices {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Price> getPrices(int productId) {
+    public Optional<List<Price>> getPrices(int productId) {
         return getPrices.getPrices(productId);
     }
 }

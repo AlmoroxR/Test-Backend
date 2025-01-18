@@ -5,7 +5,7 @@ import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 import com.inditex.backendtest.infrastructure.entities.mongodb.PriceEntity;
 import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class PriceRepositoryPortImpl implements PriceRepositoryPort {
@@ -25,7 +25,7 @@ public class PriceRepositoryPortImpl implements PriceRepositoryPort {
     }
 
     @Override
-    public Optional<Price> getPrices(int productId) {
+    public Optional<List<Price>> getPrices(int productId) {
 
         Optional<PriceEntity> priceEntity = priceRepository.findByProductId(productId);
 

@@ -5,7 +5,7 @@ import com.inditex.backendtest.domain.ports.in.CreatePrice;
 import com.inditex.backendtest.domain.ports.in.GetPrices;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,7 +28,7 @@ public class GetPricesImpl implements GetPrices {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Price> getPrices(int productId) {
+    public Optional<List<Price>> getPrices(int productId) {
         return priceRepositoryPort.getPrices(productId);
     }
 }
