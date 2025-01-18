@@ -1,4 +1,4 @@
-package com.inditex.backendtest.domain.models;
+package com.inditex.backendtest.domain.model;
 
 import java.util.Date;
 

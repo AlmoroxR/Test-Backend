@@ -1,11 +1,11 @@
 package com.inditex.backendtest.domain.ports.out;
 
-import com.inditex.backendtest.domain.models.Price;
+import com.inditex.backendtest.domain.model.Price;
 
 /**
  * Interfaz del puerto de salida para un servicio externo que proporciona precios.
  */
-public interface ExternalService {
+public interface ExternalServicePort {
 
     /**
      * Obtiene el precio de un producto de un servicio externo.

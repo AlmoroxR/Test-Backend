@@ -1,6 +1,6 @@
 package com.inditex.backendtest.domain.ports.in;
 
-import com.inditex.backendtest.domain.models.Price;
+import com.inditex.backendtest.domain.model.Price;
 
 /**
  * Interfaz para crear precios.

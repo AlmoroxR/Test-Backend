@@ -1,7 +1,8 @@
 package com.inditex.backendtest.domain.ports.in;
 
-import com.inditex.backendtest.domain.models.Price;
+import com.inditex.backendtest.domain.model.Price;
 
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -17,5 +18,5 @@ public interface GetPrice {
      * @param date       La fecha para la que se busca el precio.
      * @return          El precio del producto.
      */
-    Optional<Price> getPrice(int brandId, int productId, String date);
+    Optional<Price> getPrice(int brandId, int productId, Date date);
 }
