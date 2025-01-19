@@ -3,8 +3,8 @@ package com.inditex.backendtest.infrastructure.repositories.h2;
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 import com.inditex.backendtest.infrastructure.entities.h2.PriceEntity;
-import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 
+import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -15,17 +15,20 @@ import java.util.Optional;
 public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
 
     private final PriceDataRepository priceDataRepository;
+    private final PriceMapper priceMapper;
 
-    public PriceDataRepositoryPortImpl(PriceDataRepository priceDataRepository) {
+
+    public PriceDataRepositoryPortImpl(PriceDataRepository priceDataRepository, PriceMapper priceMapper) {
         this.priceDataRepository = priceDataRepository;
+        this.priceMapper = priceMapper;
     }
 
     @Override
     public Price savePrice(Price price) {
 
-        PriceEntity priceEntity = PriceMapper.mapToPriceEntity(price);
+        PriceEntity priceEntity = priceMapper.priceDomainToPriceEntity(price);
         PriceEntity savedPriceEntity = priceDataRepository.save(priceEntity);
-        return PriceMapper.mapToDomainPrice(savedPriceEntity);
+        return priceMapper.priceEntityToPriceDomain(savedPriceEntity);
     }
 
     @Override
@@ -34,7 +37,7 @@ public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
         Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findPricesByProductId(productId);
 
         return priceEntityList.map(entities -> entities.stream()
-                .map(PriceMapper::mapToDomainPrice)
+                .map(priceMapper::priceEntityToPriceDomain)
                 .toList());
     }
 
@@ -44,7 +47,7 @@ public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
         Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findPricesByProductIdAndBrandIdAndDateBetweenStartDateAndEndDate(productId, brandId, date);
 
         return priceEntityList.map(entities -> entities.stream()
-                .map(PriceMapper::mapToDomainPrice)
+                .map(priceMapper::priceEntityToPriceDomain)
                 .toList());
     }
 }
