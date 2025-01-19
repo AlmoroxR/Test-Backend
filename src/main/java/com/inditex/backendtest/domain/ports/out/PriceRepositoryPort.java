@@ -12,5 +12,5 @@ public interface PriceRepositoryPort {
 
     Optional<List<Price>> getPrices(int productId);
 
-    Optional<List<Price>> findPrices(int productId, int brandId, Date date);
+    Optional<List<Price>> findPricesByDate(int productId, int brandId, Date date);
 }

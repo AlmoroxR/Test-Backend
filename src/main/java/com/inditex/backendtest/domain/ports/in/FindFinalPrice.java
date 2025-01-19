@@ -5,7 +5,7 @@ import com.inditex.backendtest.domain.model.Price;
 import java.util.Date;
 import java.util.Optional;
 
-public interface FindPrices {
+public interface FindFinalPrice {
 
-    Optional<Price> findPrices(int productId, int brandId, Date date);
+    Optional<Price> findFinalPrice(int productId, int brandId, Date date);
 }

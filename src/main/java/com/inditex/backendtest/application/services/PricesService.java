@@ -2,22 +2,22 @@ package com.inditex.backendtest.application.services;
 
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.in.CreatePrice;
-import com.inditex.backendtest.domain.ports.in.FindPrices;
+import com.inditex.backendtest.domain.ports.in.FindFinalPrice;
 import com.inditex.backendtest.domain.ports.in.GetPrices;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class PriceService implements CreatePrice, FindPrices, GetPrices {
+public class PricesService implements CreatePrice, FindFinalPrice, GetPrices {
 
     private final CreatePrice createPrice;
-    private final FindPrices findPrices;
+    private final FindFinalPrice findFinalPrice;
     private final GetPrices getPrices;
 
-    public PriceService(CreatePrice createPrice, FindPrices findPrices, GetPrices getPrices) {
+    public PricesService(CreatePrice createPrice, FindFinalPrice findFinalPrice, GetPrices getPrices) {
         this.createPrice = createPrice;
-        this.findPrices = findPrices;
+        this.findFinalPrice = findFinalPrice;
         this.getPrices = getPrices;
     }
 
@@ -27,8 +27,8 @@ public class PriceService implements CreatePrice, FindPrices, GetPrices {
     }
 
     @Override
-    public Optional<Price> findPrices(int productId, int brandId, Date date) {
-        return findPrices.findPrices(productId, brandId, date);
+    public Optional<Price> findFinalPrice(int productId, int brandId, Date date) {
+        return findFinalPrice.findFinalPrice(productId, brandId, date);
     }
 
     @Override

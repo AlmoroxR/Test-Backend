@@ -39,7 +39,7 @@ public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
     }
 
     @Override
-    public Optional<List<Price>> findPrices(int productId, int brandId, Date date) {
+    public Optional<List<Price>> findPricesByDate(int productId, int brandId, Date date) {
 
         Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findPricesByProductIdAndBrandIdAndDateBetweenStartDateAndEndDate(productId, brandId, date);
 
