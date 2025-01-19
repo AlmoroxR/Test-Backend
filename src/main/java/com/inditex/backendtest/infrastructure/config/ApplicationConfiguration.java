@@ -1,9 +1,11 @@
 package com.inditex.backendtest.infrastructure.config;
 
-import com.inditex.backendtest.application.price.CreatePriceImpl;
-import com.inditex.backendtest.application.price.GetPricesImpl;
+import com.inditex.backendtest.application.prices.CreatePriceImpl;
+import com.inditex.backendtest.application.prices.FindPricesImpl;
+import com.inditex.backendtest.application.prices.GetPricesImpl;
 import com.inditex.backendtest.application.services.PricesManagementService;
 import com.inditex.backendtest.domain.ports.in.CreatePrice;
+import com.inditex.backendtest.domain.ports.in.FindPrices;
 import com.inditex.backendtest.domain.ports.in.GetPrices;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
@@ -26,8 +28,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public PricesManagementService pricesManagementService(CreatePrice createPrice, GetPrices getPrices) {
-        return new PricesManagementService(createPrice, getPrices);
+    public FindPrices findPrices(PriceRepositoryPort priceRepositoryPort) {
+        return new FindPricesImpl(priceRepositoryPort);
+    }
+
+    @Bean
+    public PricesManagementService pricesManagementService(CreatePrice createPrice, GetPrices getPrices, FindPrices findPrices) {
+        return new PricesManagementService(createPrice, getPrices, findPrices);
     }
 
     @Bean

@@ -1,4 +1,4 @@
-package com.inditex.backendtest.application.price;
+package com.inditex.backendtest.application.prices;
 
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.in.CreatePrice;

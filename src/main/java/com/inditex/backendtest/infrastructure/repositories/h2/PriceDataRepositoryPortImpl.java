@@ -7,6 +7,7 @@ import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,11 @@ public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
                 .toList());
     }
 
+    @Override
+    public Optional<List<Price>> findPrices(int productId, int brandId, Date date) {
 
+        Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findByProductId(productId);
+
+        return Optional.empty();
+    }
 }

@@ -36,4 +36,16 @@ public class PriceController {
                 .map(prices -> new ResponseEntity<>(prices, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @GetMapping("/find")
+    public ResponseEntity <List<Price>> findPrices(
+            @RequestParam int productId,
+            @RequestParam int brandId,
+            @RequestParam("applicationDate") @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") Date date
+    ) {
+
+        return pricesManagementService.findPrices(productId, brandId, date)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
