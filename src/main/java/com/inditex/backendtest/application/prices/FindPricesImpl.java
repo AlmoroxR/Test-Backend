@@ -4,6 +4,7 @@ import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.in.FindPrices;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,8 @@ public class FindPricesImpl implements FindPrices {
     }
 
     @Override
-    public Optional<List<Price>> findPrices(int productId, int brandId, Date date) {
-        return priceRepositoryPort.findPrices(productId, brandId, date);
-    }
+    public Optional<Price> findPrices(int productId, int brandId, Date date) {
+        return priceRepositoryPort.findPrices(productId, brandId, date)
+                .flatMap(prices -> prices.stream()
+                        .max(Comparator.comparingInt(Price::getPriority)));    }
 }
