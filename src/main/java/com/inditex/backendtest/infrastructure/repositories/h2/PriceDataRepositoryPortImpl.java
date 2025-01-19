@@ -31,7 +31,7 @@ public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
     @Override
     public Optional<List<Price>> getPrices(int productId) {
 
-        Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findByProductId(productId);
+        Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findPricesByProductId(productId);
 
         return priceEntityList.map(entities -> entities.stream()
                 .map(PriceMapper::mapToDomainPrice)
@@ -41,8 +41,10 @@ public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
     @Override
     public Optional<List<Price>> findPrices(int productId, int brandId, Date date) {
 
-        Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findByProductId(productId);
+        Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findPricesByProductIdAndBrandIdAndDateBetweenStartDateAndEndDate(productId, brandId, date);
 
-        return Optional.empty();
+        return priceEntityList.map(entities -> entities.stream()
+                .map(PriceMapper::mapToDomainPrice)
+                .toList());
     }
 }
