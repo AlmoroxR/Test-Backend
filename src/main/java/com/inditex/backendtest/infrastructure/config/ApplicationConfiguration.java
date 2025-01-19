@@ -7,8 +7,8 @@ import com.inditex.backendtest.domain.ports.in.CreatePrice;
 import com.inditex.backendtest.domain.ports.in.GetPrices;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
-import com.inditex.backendtest.infrastructure.repositories.mongodb.PriceRepository;
-import com.inditex.backendtest.infrastructure.repositories.mongodb.PriceRepositoryPortImpl;
+import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepository;
+import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepositoryPortImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,7 +31,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public PriceRepositoryPort priceRepositoryPort(PriceRepository priceRepository) {
-        return new PriceRepositoryPortImpl(priceRepository);
+    public PriceRepositoryPort priceRepositoryPort(PriceDataRepository priceDataRepository) {
+        return new PriceDataRepositoryPortImpl(priceDataRepository);
     }
 }

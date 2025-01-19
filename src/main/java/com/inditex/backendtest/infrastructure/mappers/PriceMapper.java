@@ -1,7 +1,7 @@
 package com.inditex.backendtest.infrastructure.mappers;
 
 import com.inditex.backendtest.domain.model.Price;
-import com.inditex.backendtest.infrastructure.entities.mongodb.PriceEntity;
+import com.inditex.backendtest.infrastructure.entities.h2.PriceEntity;
 
 /**
  * Clase para mapear la entidad de MongoDB con la capa dominio.

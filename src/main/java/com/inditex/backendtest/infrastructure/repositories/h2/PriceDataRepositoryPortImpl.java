@@ -1,39 +1,41 @@
-package com.inditex.backendtest.infrastructure.repositories.mongodb;
+package com.inditex.backendtest.infrastructure.repositories.h2;
 
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
-import com.inditex.backendtest.infrastructure.entities.mongodb.PriceEntity;
+import com.inditex.backendtest.infrastructure.entities.h2.PriceEntity;
 import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class PriceRepositoryPortImpl implements PriceRepositoryPort {
+@Component
+public class PriceDataRepositoryPortImpl implements PriceRepositoryPort {
 
-    private final PriceRepository priceRepository;
+    private final PriceDataRepository priceDataRepository;
 
-    public PriceRepositoryPortImpl(PriceRepository priceRepository) {
-        this.priceRepository = priceRepository;
+    public PriceDataRepositoryPortImpl(PriceDataRepository priceDataRepository) {
+        this.priceDataRepository = priceDataRepository;
     }
 
     @Override
     public Price savePrice(Price price) {
 
         PriceEntity priceEntity = PriceMapper.mapToPriceEntity(price);
-        PriceEntity savedPriceEntity = priceRepository.save(priceEntity);
+        PriceEntity savedPriceEntity = priceDataRepository.save(priceEntity);
         return PriceMapper.mapToDomainPrice(savedPriceEntity);
     }
 
     @Override
     public Optional<List<Price>> getPrices(int productId) {
 
-        Optional<List<PriceEntity>> priceEntityList = priceRepository.findByProductId(productId);
+        Optional<List<PriceEntity>> priceEntityList = priceDataRepository.findByProductId(productId);
 
         return priceEntityList.map(entities -> entities.stream()
                 .map(PriceMapper::mapToDomainPrice)
                 .toList());
     }
+
+
 }

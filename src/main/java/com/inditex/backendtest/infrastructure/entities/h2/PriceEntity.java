@@ -1,18 +1,19 @@
-package com.inditex.backendtest.infrastructure.entities.mongodb;
+package com.inditex.backendtest.infrastructure.entities.h2;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 /**
  * Entidad que representa un precio en la base de datos MongoDB.
  */
-@Document("prices")
+@Entity
+@Table(name = "prices")
 public class PriceEntity {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera automáticamente el ID
+    private Long id;
 
     private int brandId;
     private Date startDate;
@@ -64,13 +65,13 @@ public class PriceEntity {
     /**
      * @return El identificador único del documento.
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
     /**
      * @param id El identificador único del documento.
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
