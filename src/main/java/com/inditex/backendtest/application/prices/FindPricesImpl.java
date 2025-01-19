@@ -20,6 +20,12 @@ public class FindPricesImpl implements FindPrices {
     @Override
     public Optional<Price> findPrices(int productId, int brandId, Date date) {
         return priceRepositoryPort.findPrices(productId, brandId, date)
-                .flatMap(prices -> prices.stream()
-                        .max(Comparator.comparingInt(Price::getPriority)));    }
+                .map(this::findHighestPriorityPrice);
+    }
+
+    private Price findHighestPriorityPrice(List<Price> prices) {
+        return prices.stream()
+                .max(Comparator.comparingInt(Price::getPriority))
+                .orElseThrow();
+    }
 }
