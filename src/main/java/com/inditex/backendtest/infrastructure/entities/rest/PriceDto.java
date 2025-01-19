@@ -10,17 +10,19 @@ public class PriceDto {
     private Date startDate;
     private Date endDate;
     private Long price;
+    private String currency;
 
     public PriceDto() {
     }
 
-    public PriceDto(int productId, int brandId, int priceList, Date startDate, Date endDate, Long price) {
+    public PriceDto(int productId, int brandId, int priceList, Date startDate, Date endDate, Long price, String currency) {
         this.productId = productId;
         this.brandId = brandId;
         this.priceList = priceList;
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
+        this.currency = currency;
     }
 
     public int getProductId() {
@@ -70,4 +72,13 @@ public class PriceDto {
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
 }

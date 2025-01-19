@@ -5,6 +5,8 @@ import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.infrastructure.entities.h2.PriceEntity;
 import com.inditex.backendtest.infrastructure.entities.rest.PriceDto;
 import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.mapstruct.factory.Mappers;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,11 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/prices")
+@RequestMapping("/v1/prices")
+@Tag(
+        name = "Precios",
+        description = "Operaciones relacionadas con los precios"
+)
 public class PriceRestController {
 
     private final PricesService pricesService;
@@ -27,6 +33,10 @@ public class PriceRestController {
     }
 
     @PostMapping
+    @Operation(
+            summary = "Crea un precio",
+            description = "Crea un precio para un producto y una marca"
+    )
     public ResponseEntity<Price> createPrice(@RequestBody PriceDto priceDto) {
 
         Price createdPrice = pricesService.createPrice(priceMapper.priceDtoToPriceDomain(priceDto));
@@ -34,6 +44,10 @@ public class PriceRestController {
     }
 
     @GetMapping("/{id}")
+    @Operation(
+            summary = "Obtiene los precios",
+            description = "Obtiene los precios de un producto a partir de su identificador"
+    )
     public ResponseEntity <List<PriceDto>> getPrices(@PathVariable int id) {
 
         return pricesService.getPrices(id)
@@ -47,6 +61,10 @@ public class PriceRestController {
     }
 
     @GetMapping("/find")
+    @Operation(
+            summary = "Busca un precio",
+            description = "Busca el precio final para un producto y una marca en una fecha concreta, y aplica el precio vigente en ese momento"
+    )
     public ResponseEntity <PriceDto> findFinalPrice(
             @RequestParam int productId,
             @RequestParam int brandId,

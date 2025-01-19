@@ -9,8 +9,10 @@ import com.inditex.backendtest.domain.ports.in.FindFinalPrice;
 import com.inditex.backendtest.domain.ports.in.GetPrices;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
+import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepository;
 import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepositoryPortImpl;
+import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -38,7 +40,12 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public PriceRepositoryPort priceRepositoryPort(PriceDataRepository priceDataRepository) {
-        return new PriceDataRepositoryPortImpl(priceDataRepository);
+    public PriceMapper priceMapper() {
+        return Mappers.getMapper(PriceMapper.class);
+    }
+
+    @Bean
+    public PriceRepositoryPort priceRepositoryPort(PriceDataRepository priceDataRepository, PriceMapper priceMapper) {
+        return new PriceDataRepositoryPortImpl(priceDataRepository, priceMapper);
     }
 }
