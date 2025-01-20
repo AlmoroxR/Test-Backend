@@ -2,6 +2,9 @@ package com.inditex.backendtest.domain.model;
 
 import java.util.Date;
 
+/**
+ * Representa la información de un precio de un producto.
+ */
 public class Price {
 
     private int brandId;
@@ -14,15 +17,15 @@ public class Price {
     private String currency;
 
     /**
-     * Constructor de la clase Prices.
+     * Constructor de la clase Price.
      *
-     * @param brandId    Identificador de la cadena.
-     * @param startDate  Fecha de inicio de la vigencia del precio.
-     * @param endDate    Fecha de fin de la vigencia del precio.
+     * @param brandId    Identificador de la marca.
+     * @param startDate  Fecha de inicio de la aplicación del precio.
+     * @param endDate    Fecha de fin de la aplicación del precio.
      * @param priceList  Identificador de la lista de precios.
      * @param productId  Identificador del producto.
      * @param priority   Prioridad del precio.
-     * @param price      Precio del producto.
+     * @param price      Valor del precio.
      * @param currency   Moneda del precio.
      */
     public Price(
@@ -46,112 +49,112 @@ public class Price {
     }
 
     /**
-     * @return El identificador de la cadena.
+     * @return Identificador de la marca.
      */
     public int getBrandId() {
         return brandId;
     }
 
     /**
-     * @param brandId El nuevo identificador de la cadena.
+     * @param brandId Identificador de la marca.
      */
     public void setBrandId(int brandId) {
         this.brandId = brandId;
     }
 
     /**
-     * @return La fecha de inicio de la vigencia del precio.
+     * @return Fecha de inicio.
      */
     public Date getStartDate() {
         return startDate;
     }
 
     /**
-     * @param startDate La nueva fecha de inicio de la vigencia del precio.
+     * @param startDate Fecha de inicio.
      */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
     /**
-     * @return La fecha de fin de la vigencia del precio.
+     * @return Fecha de fin.
      */
     public Date getEndDate() {
         return endDate;
     }
 
     /**
-     * @param endDate La nueva fecha de fin de la vigencia del precio.
+     * @param endDate Fecha de fin.
      */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
     /**
-     * @return El identificador de la lista de precios.
+     * @return Identificador de la lista de precios.
      */
     public int getPriceList() {
         return priceList;
     }
 
     /**
-     * @param priceList El nuevo identificador de la lista de precios.
+     * @param priceList Identificador de la lista de precios.
      */
     public void setPriceList(int priceList) {
         this.priceList = priceList;
     }
 
     /**
-     * @return El identificador del producto.
+     * @return Identificador del producto.
      */
     public int getProductId() {
         return productId;
     }
 
     /**
-     * @param productId El nuevo identificador del producto.
+     * @param productId Identificador del producto.
      */
     public void setProductId(int productId) {
         this.productId = productId;
     }
 
     /**
-     * @return La prioridad del precio.
+     * @return Prioridad del precio.
      */
     public int getPriority() {
         return priority;
     }
 
     /**
-     * @param priority La nueva prioridad del precio.
+     * @param priority Prioridad del precio.
      */
     public void setPriority(int priority) {
         this.priority = priority;
     }
 
     /**
-     * @return El precio del producto.
+     * @return Valor del precio.
      */
     public double getPrice() {
         return price;
     }
 
     /**
-     * @param price El nuevo precio del producto.
+     * @param price Valor del precio.
      */
     public void setPrice(double price) {
         this.price = price;
     }
 
     /**
-     * @return La moneda del precio.
+     * @return Moneda del precio.
      */
     public String getCurrency() {
         return currency;
     }
 
     /**
-     * @param currency La nueva moneda del precio.
+     * @param currency Moneda del precio.
      */
     public void setCurrency(String currency) {
         this.currency = currency;
