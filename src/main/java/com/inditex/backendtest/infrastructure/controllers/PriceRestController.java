@@ -103,6 +103,6 @@ public class PriceRestController {
 
         return pricesService.findFinalPrice(productId, brandId, date)
                 .map(price -> new ResponseEntity<>(priceMapper.priceDomainToPriceDto(price), HttpStatus.OK))
-                .orElseThrow(PriceNotFoundException::new);
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
