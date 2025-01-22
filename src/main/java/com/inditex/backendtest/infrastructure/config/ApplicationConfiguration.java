@@ -11,10 +11,7 @@ import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
 
 import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepository;
-import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepositoryPortImpl;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import org.mapstruct.factory.Mappers;
+import com.inditex.backendtest.infrastructure.repositories.h2.PriceDataRepositoryPortImpl;import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
