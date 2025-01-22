@@ -1,5 +1,10 @@
 package com.inditex.backendtest.infrastructure.entities.rest;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.util.Date;
 
 /**
@@ -7,12 +12,25 @@ import java.util.Date;
  */
 public class PriceDto {
 
+    @NotNull(message = "El ID del producto no puede ser nulo")
     private int productId;
+
+    @NotNull(message = "El ID de la marca no puede ser nulo")
     private int brandId;
+
+    @NotNull(message = "El ID de la lista de precios no puede ser nulo")
+    @Min(value = 1, message = "El ID de la lista de precios debe ser mayor o igual a 1")
     private int priceList;
+
     private Date startDate;
     private Date endDate;
+
+    @NotNull(message = "El precio no puede ser nulo")
+    @Positive(message = "El precio debe ser positivo")
     private Long price;
+
+    @NotNull(message = "La moneda no puede ser nula")
+    @NotBlank(message = "La moneda no puede estar en blanco")
     private String currency;
 
     /**

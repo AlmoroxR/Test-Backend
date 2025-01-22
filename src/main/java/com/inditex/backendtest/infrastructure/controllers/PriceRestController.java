@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,12 +37,18 @@ public class PriceRestController {
         this.priceMapper = priceMapper;
     }
 
+    /**
+     * Crea un nuevo precio.
+     *
+     * @param priceDto DTO con la información del precio a crear.
+     * @return ResponseEntity con el Price creado y HttpStatus.CREATED.
+     */
     @PostMapping
     @Operation(
             summary = "Crea un precio",
             description = "Crea un precio para un producto y una marca"
     )
-    public ResponseEntity<Price> createPrice(@RequestBody PriceDto priceDto) {
+    public ResponseEntity<Price> createPrice(@Valid @RequestBody PriceDto priceDto) {
 
         Price createdPrice = pricesService.createPrice(priceMapper.priceDtoToPriceDomain(priceDto));
         return new ResponseEntity<>(createdPrice, HttpStatus.CREATED);
@@ -57,7 +65,7 @@ public class PriceRestController {
             summary = "Obtiene los precios",
             description = "Obtiene los precios de un producto a partir de su identificador"
     )
-    public ResponseEntity <List<PriceDto>> getPrices(@PathVariable int id) {
+    public ResponseEntity <List<PriceDto>> getPrices(@NotNull @PathVariable int id) {
 
         return pricesService.getPrices(id)
                 .map(prices -> {
@@ -88,9 +96,9 @@ public class PriceRestController {
                     @ApiResponse(responseCode = "404", description = "Precio no encontrado")
     })
     public ResponseEntity <PriceDto> findFinalPrice(
-            @Parameter(description = "Identificador del producto")  @RequestParam int productId,
-            @Parameter(description = "Identificador de la marca")   @RequestParam int brandId,
-            @Parameter(description = "Fecha y hora de la consulta") @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") Date date
+            @Parameter(description = "Identificador del producto")  @NotNull @RequestParam int productId,
+            @Parameter(description = "Identificador de la marca")   @NotNull @RequestParam int brandId,
+            @Parameter(description = "Fecha y hora de la consulta") @NotNull @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") Date date
     ) {
 
         return pricesService.findFinalPrice(productId, brandId, date)

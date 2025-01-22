@@ -92,4 +92,9 @@ public class ApplicationConfiguration {
     public PriceRepositoryPort priceRepositoryPort(PriceDataRepository priceDataRepository, PriceMapper priceMapper) {
         return new PriceDataRepositoryPortImpl(priceDataRepository, priceMapper);
     }
+
+    @Bean
+    public Validator validator() {
+        return Validation.buildDefaultValidatorFactory().getValidator();
+    }
 }
