@@ -51,4 +51,12 @@ public class PriceRestControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void testFindFinalPrice() throws Exception {
+        mockMvc.perform(get("/v1/prices/find")
+                        .param("productId", "35455")
+                        .param("brandId", "1")
+                        .param("date", "2020-06-14-10.00.00"))
+                .andExpect(status().isOk());
+    }
 }
