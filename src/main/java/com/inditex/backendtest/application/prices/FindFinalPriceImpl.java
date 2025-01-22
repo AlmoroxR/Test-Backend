@@ -26,7 +26,7 @@ public class FindFinalPriceImpl implements FindFinalPrice {
     }
 
     /**
-     * Encuentra el precio final de un producto para una marca y fecha dadas.
+     * Envia la lista de precios que hemos encontrado en BD a la función findHighestPriorityPrice
      *
      * @param productId Identificador del producto.
      * @param brandId   Identificador de la marca.
@@ -40,7 +40,7 @@ public class FindFinalPriceImpl implements FindFinalPrice {
     }
 
     /**
-     * Encuentra el precio con mayor prioridad de una lista de precios.
+     * A partir de la lista de precios, encuentra el precio con más prioridad
      *
      * @param prices Lista de precios.
      * @return Objeto Price con el precio de mayor prioridad.

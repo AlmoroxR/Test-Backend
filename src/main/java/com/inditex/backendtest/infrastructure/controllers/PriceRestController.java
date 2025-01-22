@@ -46,6 +46,12 @@ public class PriceRestController {
         return new ResponseEntity<>(createdPrice, HttpStatus.CREATED);
     }
 
+    /**
+     * Obtiene los precios de un producto.
+     *
+     * @param id Identificador del producto.
+     * @return ResponseEntity con una lista de PriceDto si se encuentran precios, o HttpStatus.NOT_FOUND si no se encuentran.
+     */
     @GetMapping("/{id}")
     @Operation(
             summary = "Obtiene los precios",
@@ -55,14 +61,24 @@ public class PriceRestController {
 
         return pricesService.getPrices(id)
                 .map(prices -> {
+                    // Convierte la lista de precios del dominio a DTOs.
                     List<PriceDto> priceDtos = prices.stream()
                             .map(priceMapper::priceDomainToPriceDto)
                             .toList();
+                    // Devuelve una respuesta con la lista de DTOs y HttpStatus.OK.
                     return new ResponseEntity<>(priceDtos, HttpStatus.OK);
                 })
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * Busca el precio final para un producto y una marca en una fecha concreta.
+     *
+     * @param productId Identificador del producto.
+     * @param brandId   Identificador de la marca.
+     * @param date      Fecha y hora de la consulta.
+     * @return ResponseEntity con el PriceDto encontrado y HttpStatus.OK, o lanza PriceNotFoundException si no se encuentra.
+     */
     @GetMapping("/find")
     @Operation(
             summary = "Busca un precio",
