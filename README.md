@@ -19,6 +19,14 @@ Se ha asegurado de que se cumplen los siguientes casos de prueba:
 *   Test 4: petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA)
 *   Test 5: petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA)
 
+## Tests
+
+Se han agregado tests end to end utilizando Cucumber y RestAssured, aprovechando mi experiencia previa con estas herramientas. Se han utilizado para probar el endpoint de consulta de un precio, asegurando que la API REST funciona correctamente.
+
+Cucumber permite escribir tests en un lenguaje natural (Gherkin), lo que facilita su comprensión y promueve la colaboración entre el equipo de desarrollo y el equipo de negocio. Además, Cucumber genera documentación a partir de los escenarios de prueba, lo que ayuda a comprender el comportamiento del sistema.
+
+Para ver los reportes de Cucumber, puedes acceder a la URL que se muestra en la consola al ejecutar los tests de la clase `CucumberRunner.java`. También puedes abrir el archivo `target/cucumber-report.html` en tu navegador web.
+
 ## Funcionalidades Adicionales
 
 Además de la funcionalidad principal de la prueba, se han implementado dos operaciones básicas:
