@@ -3,6 +3,7 @@ package com.inditex.backendtest.application.prices;
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.domain.ports.in.FindFinalPrice;
 import com.inditex.backendtest.domain.ports.out.PriceRepositoryPort;
+import com.inditex.backendtest.infrastructure.exceptions.prices.PriceNotFoundException;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -48,6 +49,6 @@ public class FindFinalPriceImpl implements FindFinalPrice {
     private Price findHighestPriorityPrice(List<Price> prices) {
         return prices.stream()
                 .max(Comparator.comparingInt(Price::getPriority))
-                .orElseThrow();
+                .orElseThrow(PriceNotFoundException::new);
     }
 }

@@ -67,7 +67,7 @@ public class PriceRestController {
     )
     public ResponseEntity <List<PriceDto>> getPrices(@NotNull @PathVariable int id) {
 
-        return pricesService.getPrices(id)
+        ResponseEntity <List<PriceDto>>  returna = pricesService.getPrices(id)
                 .map(prices -> {
                     // Convierte la lista de precios del dominio a DTOs.
                     List<PriceDto> priceDtos = prices.stream()
@@ -77,6 +77,8 @@ public class PriceRestController {
                     return new ResponseEntity<>(priceDtos, HttpStatus.OK);
                 })
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+        return returna;
     }
 
     /**
@@ -103,6 +105,6 @@ public class PriceRestController {
 
         return pricesService.findFinalPrice(productId, brandId, date)
                 .map(price -> new ResponseEntity<>(priceMapper.priceDomainToPriceDto(price), HttpStatus.OK))
-                .orElseThrow(PriceNotFoundException::new);
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
