@@ -3,7 +3,6 @@ package com.inditex.backendtest.infrastructure.controllers;
 import com.inditex.backendtest.application.services.PricesService;
 import com.inditex.backendtest.domain.model.Price;
 import com.inditex.backendtest.infrastructure.entities.rest.PriceDto;
-import com.inditex.backendtest.infrastructure.exceptions.prices.PriceNotFoundException;
 import com.inditex.backendtest.infrastructure.mappers.PriceMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
